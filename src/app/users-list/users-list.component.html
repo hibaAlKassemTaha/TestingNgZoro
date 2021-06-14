@@ -1,0 +1,78 @@
+
+<nz-card  [nzExtra]="fullPageTemplate">
+<nz-card  nzTitle="Users" [nzExtra]="extraTemplate">
+    <nz-table #basicTable [nzData]="listOfData">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Address</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of basicTable.data">
+            <td>{{ data.name }}</td>
+            <td>{{ data.age }}</td>
+            <td>{{ data.address }}</td>
+            <td>
+              <button nz-button [nzType]="'primary'" (click)="showModal()"><span>Edit 一 {{ data.name }}</span></button>
+              <nz-divider nzType="vertical"></nz-divider>
+              <nz-modal [(nzVisible)]="isVisible" nzTitle="Edit User" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+                <ng-container *nzModalContent>
+                  
+                </ng-container>
+              </nz-modal>
+              <a>Delete</a>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+  </nz-card>
+  </nz-card>
+  <ng-template #extraTemplate>
+    <a>More</a>
+  </ng-template>
+  <ng-template #fullPageTemplate>
+    <button nz-button nzType="primary" (click)="open()">Profile</button>
+  </ng-template>
+
+  <nz-drawer [nzVisible]="visible" [nzWidth]="640" [nzClosable]="false" (nzOnClose)="close()">
+    <ng-container *nzDrawerContent>
+      <p class="title" style=" margin-bottom: 24px;">User Profile</p>
+      <nz-descriptions [nzColumn]="2" nzTitle="Personal">
+        <nz-descriptions-item nzTitle="Full Name" [nzSpan]="1">Lily</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Account" [nzSpan]="1">AntDesign@example.com</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="City" [nzSpan]="1">HangZhou</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Country" [nzSpan]="1">China🇨🇳</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Birthday" [nzSpan]="1">February 2,1900</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Website" [nzSpan]="1">-</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Message" [nzSpan]="2">Make things as simple as possible but no simpler.</nz-descriptions-item>
+      </nz-descriptions>
+      <nz-divider></nz-divider>
+      <nz-descriptions [nzColumn]="2" nzTitle="Company">
+        <nz-descriptions-item nzTitle="Position" [nzSpan]="1">Programmer</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Responsibilities" [nzSpan]="1">Coding</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Department" [nzSpan]="1">AFX</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Supervisor" [nzSpan]="1">Lin</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Skills" [nzSpan]="2">
+          C / C + +, data structures, software engineering, operating systems, computer networks, databases, compiler theory, computer
+          architecture, Microcomputer Principle and Interface Technology, Computer English, Java, ASP, etc.
+        </nz-descriptions-item>
+      </nz-descriptions>
+      <nz-divider></nz-divider>
+      <nz-descriptions [nzColumn]="2" nzTitle="Contacts">
+        <nz-descriptions-item nzTitle="Email" [nzSpan]="1">AntDesign@example.com</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Phone Number" [nzSpan]="1">+86 181 0000 0000</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Github" [nzSpan]="2">
+          <a href="https://github.com/NG-ZORRO/ng-zorro-antd" target="_blank">github.com/NG-ZORRO/ng-zorro-antd</a>
+        </nz-descriptions-item>
+    
+      </nz-descriptions>
+      <nz-descriptions [nzColumn]="1" nzTitle="Contacts">
+        <nz-descriptions-item nzTitle="Log Out" [nzSpan]="1">
+             <button nz-button nzType="primary" (click)="signOut()">Sign Out</button>
+        </nz-descriptions-item>
+    </nz-descriptions>
+    </ng-container>
+  </nz-drawer>
